@@ -1,9 +1,11 @@
+import { getProjects } from './reducers/projects.reducer';
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Injectable()
 export class DataService {
   todos: FirebaseListObservable<any[]>;
+  projects: FirebaseListObservable<any[]>;
 
   constructor(private firebaseDB: AngularFireDatabase) {}
   /*
@@ -28,5 +30,9 @@ export class DataService {
 
   addTodo(todo) {
     this.todos.push(todo);
+  }
+
+  getProjects() {
+    return this.projects = this.firebaseDB.list('/projects');
   }
 }

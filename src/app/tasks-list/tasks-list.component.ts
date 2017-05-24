@@ -1,9 +1,10 @@
-import { State } from './../reducers/tasks';
+import { getProjects } from './../reducers/index';
+import { State } from './../reducers';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 
-import * as tasks from '../reducers/tasks';
+import * as fromRoot from '../reducers';
 
 @Component({
   selector: 'app-tasks-list',
@@ -14,14 +15,22 @@ import * as tasks from '../reducers/tasks';
           {{item.title}}
         </li>
       </ul>
+      <hr>
+      <ul>
+        <li *ngFor="let item of (projects$ | async)">
+          {{item.title}}
+        </li>
+      </ul>
     </div>
   `,
   styles: []
 })
 export class TasksListComponent implements OnInit {
   tasks$: Observable<any>;
+  projects$: Observable<any>;
   constructor(store: Store<State>) {
-    this.tasks$ = store.select(tasks.getTasks);
+    this.tasks$ = store.select(fromRoot.getTasks);
+    this.projects$ = store.select(fromRoot.getProjects);
   }
 
   ngOnInit() {

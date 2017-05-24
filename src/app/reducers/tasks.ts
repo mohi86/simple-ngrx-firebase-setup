@@ -1,4 +1,3 @@
-import { LOAD_TASK_SUCCESS } from './../actions/tasks';
 import { Action } from '@ngrx/store';
 import * as tasks from '../actions/tasks';
 

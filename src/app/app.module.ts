@@ -1,3 +1,4 @@
+import { ProjectsEffects } from './effects/project.effects';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,7 @@ import { TasksDetailComponent } from './tasks-detail/tasks-detail.component';
 import { DataService } from "app/data.service";
 import { StoreModule } from "@ngrx/store";
 
-import { reducer } from './reducers/tasks';
+import { reducer } from './reducers';
 import { EffectsModule } from "@ngrx/effects";
 import {TasksEffects} from './effects/tasks';
 
@@ -29,6 +30,7 @@ import {TasksEffects} from './effects/tasks';
     AngularFireDatabaseModule,
     StoreModule.provideStore(reducer),
     EffectsModule.run(TasksEffects),
+    EffectsModule.run(ProjectsEffects),
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
